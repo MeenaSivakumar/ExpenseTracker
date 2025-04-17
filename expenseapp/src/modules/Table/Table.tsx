@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { TableProps } from "./Table.types";
 import { Button } from "../../ui/atoms/Button";
 

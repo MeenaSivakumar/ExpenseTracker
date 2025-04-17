@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { FormPage } from "../../pages/Form/FormPage";
 import { Button } from "../../ui/atoms/Button/Button";
 import { Form } from "../Form";
 import { Table } from "../Table";
-import { useNavigate } from "react-router-dom";
 
 type statement = {
   description: string | null;
