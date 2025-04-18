@@ -3,18 +3,16 @@ import { Button } from "../../ui/atoms/Button/Button";
 import { FormInput } from "../../ui/atoms/moleclues/FormInput/FormInput";
 import { FormProps } from "./Form.types";
 
-export const Form = ({ onSubmit, onClick }: FormProps) => {
-  const [formData, setFormData] = useState({});
+export const Form = ({
+  onSubmit,
+  onClick,
+  defaultValues,
+}: FormProps & { defaultValues: any }) => {
+  const [formData, setFormData] = useState(defaultValues || {});
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    onSubmit({
-      ...(formData as {
-        description: string | null;
-        category: "Income" | "Expense" | null;
-        amount: number;
-      }),
-    });
+    onSubmit({ ...formData, amount: Number(formData.amount) });
     console.log(formData);
   };
   return (
@@ -33,6 +31,7 @@ export const Form = ({ onSubmit, onClick }: FormProps) => {
           }}
         >
           <FormInput
+            value={formData.description || ""}
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
             }
@@ -45,6 +44,7 @@ export const Form = ({ onSubmit, onClick }: FormProps) => {
                 type="radio"
                 name="category"
                 value="Expense"
+                checked={formData.category === "Expense"}
                 onChange={(e) =>
                   setFormData({ ...formData, category: e.target.value })
                 }
@@ -56,6 +56,7 @@ export const Form = ({ onSubmit, onClick }: FormProps) => {
                 type="radio"
                 name="category"
                 value="Income"
+                checked={formData.category === "Income"}
                 onChange={(e) =>
                   setFormData({ ...formData, category: e.target.value })
                 }
@@ -65,6 +66,7 @@ export const Form = ({ onSubmit, onClick }: FormProps) => {
           </div>
 
           <FormInput
+            value={formData.amount || ""}
             onChange={(e) =>
               setFormData({ ...formData, amount: e.target.value })
             }
