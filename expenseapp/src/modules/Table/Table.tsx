@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { TableProps } from "./Table.types";
 import { Button } from "../../ui/atoms/Button";
 
@@ -34,7 +33,7 @@ export const Table = ({ statements, onDelete, onEdit }: TableProps) => {
                     justifyContent: "center",
                   }}
                 >
-                  <Button label="edit" onClick={() => {}} />
+                  <Button label="edit" onClick={() => onEdit(index)} />
                   <Button label="delete" onClick={() => onDelete(index)} />
                 </div>
               </td>
